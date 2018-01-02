@@ -1,0 +1,35 @@
+﻿@model IEnumerable<MVCWebApp.Models.Employee>
+
+
+@{
+    ViewBag.Title = "EmployeeListAsHyperLink";
+}
+
+<h2>EmployeeListAHyperLink</h2>
+
+<p>
+    @Html.ActionLink("BackToList", "EmployeeList") @*//First parameter is Link Text and second is the view or controller method to call on clciking on create new hyperlink.*@
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.EmployeeName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.EmployeeName)
+        </td>
+        <td>
+ @*//First parameter is Link Text and second is the view or controller method to call and third is Employee ID passed as paramter to the method called in the sceond parameter.*@
+            @Html.ActionLink("Edit", "EmployeeDetails", new {id =item.EmployeeID }) |
+            @Html.ActionLink("Details", "EmployeeDetails", new { id=item.EmployeeID }) |
+            @Html.ActionLink("Delete", "EmployeeDetails", new { id=item.EmployeeID })
+        </td>
+    </tr>
+}
+
+</table>
